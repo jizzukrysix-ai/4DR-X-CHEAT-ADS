@@ -334,15 +334,9 @@ header p {
   }
 
   function generateRandomKey() {
-    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    var part = function() {
-      var str = "";
-      for (var i = 0; i < 4; i++) {
-        str += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return str;
-    };
-    return "KEY-" + part() + "-" + part() + "-" + part();
+    var predefinedKeys = ["FF-IOS-VIP", "4DR-IOS", "VIP-KEY-888"];
+    var randomIndex = Math.floor(Math.random() * predefinedKeys.length);
+    return predefinedKeys[randomIndex];
   }
 
   /* AdsGram Controller logic per Block ID */
