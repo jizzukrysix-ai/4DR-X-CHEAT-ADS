@@ -4,271 +4,423 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0d1226">
-<title>Comet keekr pro</title>
+<title>Key Generator Pro</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
 <style>
-:root{--bg:#0d1226;--panel:#171e3d;--line:#2d3869;--text:#eaf0ff;--muted:#93a0cf;--shield:#ff7a59;--gold:#ffd166;--ice:#7fd8ff;
---f:"Trebuchet MS",ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:var(--f);overscroll-behavior:none;overflow:hidden}
-#app{position:relative;max-width:520px;height:100%;margin:0 auto;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
-canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
-#hud{position:absolute;left:0;right:0;top:env(safe-area-inset-top,0);display:flex;justify-content:space-between;padding:14px 16px;pointer-events:none;font-weight:700;font-variant-numeric:tabular-nums}
-#hud .sc{font-size:34px;line-height:1}#hud small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:4px}
-#hearts{color:var(--shield);font-size:22px;letter-spacing:2px;text-align:right}#slow{color:var(--ice);font-size:13px;text-align:right}
-.screen{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;gap:10px;padding:24px;background:rgba(9,13,30,.88);overflow-y:auto}
-.screen.on{display:flex}
-h1{margin:0;font-size:38px;letter-spacing:.5px}h2{margin:0 0 4px;font-size:24px}
-p{margin:0;color:#c3ccee;font-size:14px;line-height:1.5}.muted{color:var(--muted)}
-.btn{display:block;width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--text);font:700 16px var(--f);cursor:pointer;text-align:center}
-.btn.go{background:var(--shield);border-color:var(--shield);color:#2c0e05}
-.btn:disabled{opacity:.45;cursor:default}
-.btn small{display:block;font-weight:500;font-size:12px;opacity:.8;margin-top:2px}
-.row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
-.row .t{flex:1}.row .t b{display:block}.row .t span{font-size:13px;color:var(--muted)}
-.row .btn{width:auto;padding:9px 14px;font-size:14px}
-.big{font-size:56px;font-weight:700;line-height:1}
-.opt{border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
-#toast{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);background:#232d5a;border:1px solid var(--line);padding:10px 14px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;text-align:center;max-width:88%}
-#toast.on{opacity:1}
-button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+:root {
+  --bg: #090d1a;
+  --panel: #131a32;
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --accent: #6366f1;
+  --accent-glow: rgba(99, 102, 241, 0.4);
+  --success: #10b981;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  overflow: hidden;
+}
+
+#app {
+  position: relative;
+  max-width: 480px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 8px 0;
+}
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Main Split Container */
+.main-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Square Image Box */
+.image-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Controls / Ads Section */
+.controls-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+.progress-bar-bg {
+  height: 8px;
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid var(--panel-border);
+}
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4f46e5, #818cf8);
+  transition: width 0.4s ease;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--accent-glow);
+  transition: all 0.2s ease;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+.btn-success {
+  background: var(--success);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+/* Key Output Section */
+.key-box {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.key-box.on {
+  display: flex;
+}
+.key-value {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--success);
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(100px);
+  background: #1e293b;
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+#toast.on {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 </style>
 </head>
 <body>
+
 <div id="app">
-  <canvas id="cv" aria-label="Game area: drag to turn the shield"></canvas>
-  <div id="hud"><div><div class="sc" id="sc">0</div><small id="cmb">Combo ×1</small></div><div><div id="hearts"></div><div id="slow"></div></div></div>
+  <header>
+    <h1>Key Generator</h1>
+    <p>Watch 4 short ads to unlock your access key</p>
+  </header>
 
-  <div class="screen on" id="menu">
-    <h1>Comet Keeper</h1>
-    <p>Guard your planet. Drag your finger around it to turn the shield and bounce every comet away. Golden comets give coins, icy comets slow time.</p>
-    <p class="muted" id="menuStat"></p>
-    <button class="btn go" id="play">Play</button>
-    <button class="btn" id="goShop">Shield workshop</button>
-    <button class="btn" id="daily">Daily coins</button>
-    <button class="btn" id="goAbout">About, privacy and terms</button>
-  </div>
-
-  <div class="screen" id="shop">
-    <h2>Shield workshop</h2>
-    <p class="muted">Spend coins you earn by playing. Coins have no cash value.</p>
-    <div id="shoplist"></div>
-    <button class="btn" data-back>Back</button>
-  </div>
-
-  <div class="screen" id="over">
-    <p class="muted">Planet lost</p>
-    <div class="big" id="oScore">0</div>
-    <p id="oInfo"></p>
-    <button class="btn go" id="again">Play again</button>
-    <div class="opt">
-      <p class="muted" style="margin-bottom:8px">Optional bonuses. The game works fully without ads.</p>
-      <button class="btn" id="adRevive">Watch an ad: continue this run<small>Restores 1 life, once per run</small></button>
-      <button class="btn" id="adDouble" style="margin-top:8px">Watch an ad: double this run’s coins</button>
+  <div class="main-card">
+    <!-- Square Image Area -->
+    <div class="image-box">
+      <img src="https://i.ibb.co/5hdsCTx9/download-6.jpg">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted)">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+      </svg>
     </div>
-    <button class="btn" data-back>Menu</button>
-  </div>
 
-  <div class="screen" id="about">
-    <h2>About Comet Koop pro </h2>
-    <p>An arcade skill game. Coins and scores are in-game points only. They have no cash value and cannot be withdrawn or exchanged.</p>
-    <h2 style="font-size:17px;margin-top:8px">Ads</h2>
-    <p>Ads appear only after you press a button that says “Watch an ad”, on the game over screen. You get the bonus after the ad finishes. You never need an ad to play. Ads are provided by AdsGram.</p>
-    <h2 style="font-size:17px;margin-top:8px">Privacy</h2>
-    <p>Progress is saved on your device. Your Telegram user ID is used only to keep your save separate. We do not sell personal data. AdsGram may process data under its own privacy policy.</p>
-    <h2 style="font-size:17px;margin-top:8px">Terms</h2>
-    <p>Provided as is, for entertainment. Cheating or automated play may be blocked. Contact: @cometkeeper22_bot</p>
-    <button class="btn" data-back>Back</button>
+    <!-- Controls / Action Area -->
+    <div class="controls-box">
+      <div class="progress-header">
+        <span>Progress</span>
+        <span id="adCountText">0 / 4 Ads Watched</span>
+      </div>
+      
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+
+      <button class="btn" id="watchAdBtn">
+        <span>Watch Ad (1/4)</span>
+      </button>
+
+      <!-- Generated Key Result Box -->
+      <div class="key-box" id="keyBox">
+        <span style="font-size: 12px; color: var(--muted);">Your Key Generated Successfully!</span>
+        <div class="key-value" id="keyValue">4DR-2026-REG</div>
+        <button class="btn btn-success" id="copyKeyBtn">Copy Key</button>
+      </div>
+    </div>
   </div>
-  <div id="toast" role="status"></div>
 </div>
 
+<div id="toast"></div>
+
 <script>
-(function(){
-"use strict";
-var ADSGRAM_BLOCK_ID = "57813"; /* paste your reward block ID from the AdsGram dashboard */
-var AD_COOLDOWN_MS = 45000;
+(function() {
+  "use strict";
 
-var TG = window.Telegram && window.Telegram.WebApp;
-if (TG) {
-  try { TG.ready(); TG.expand(); } catch(e){}
-  try { TG.disableVerticalSwipes && TG.disableVerticalSwipes(); TG.setHeaderColor && TG.setHeaderColor("#0d1226"); TG.setBackgroundColor && TG.setBackgroundColor("#0d1226"); } catch(e){}
-}
-var uid = (TG && TG.initDataUnsafe && TG.initDataUnsafe.user && TG.initDataUnsafe.user.id) || "local";
-var KEY = "cometkeeper_v1_" + uid;
-function $(i){ return document.getElementById(i); }
-function haptic(k){ try { TG && TG.HapticFeedback && TG.HapticFeedback.impactOccurred(k); } catch(e){} }
-function today(){ return new Date().toISOString().slice(0,10); }
+  /* =========================================================
+     ADSGRAM BLOCK IDs CONFIGURATION
+     Replace these with your exact block IDs from AdsGram dashboard.
+     ========================================================= */
+  var AD_BLOCKS = {
+    ad1: "57813", // Interstitial Ad 1
+    ad2: "57813", // Interstitial Ad 2
+    ad3: "57813", // Rewarded Ad 1
+    ad4: "57813"  // Rewarded Ad 2
+  };
 
-var s = {coins:0,best:0,games:0,up:{arc:0,life:0,slow:0},daily:"",adAt:0};
-try { var p = JSON.parse(localStorage.getItem(KEY) || "null"); if (p) { s = Object.assign(s, p); s.up = Object.assign({arc:0,life:0,slow:0}, p.up||{}); } } catch(e){}
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){} }
-var tt; function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(tt); tt=setTimeout(function(){t.classList.remove("on");},2600); }
+  /* Initialize Telegram WebApp */
+  var TG = window.Telegram && window.Telegram.WebApp;
+  if (TG) {
+    try {
+      TG.ready();
+      TG.expand();
+      if (TG.disableVerticalSwipes) TG.disableVerticalSwipes();
+      if (TG.setHeaderColor) TG.setHeaderColor("#090d1a");
+      if (TG.setBackgroundColor) TG.setBackgroundColor("#090d1a");
+    } catch(e) {}
+  }
 
-/* ===== screens ===== */
-function show(id){ ["menu","shop","over","about"].forEach(function(n){ $(n).classList.toggle("on", n===id); }); if (id==="menu") menuStat(); if (id==="shop") renderShop(); }
-function menuStat(){ $("menuStat").textContent = "Best score " + s.best + "   ·   Coins " + s.coins; }
-document.querySelectorAll("[data-back]").forEach(function(b){ b.addEventListener("click", function(){ show("menu"); }); });
-$("goShop").onclick = function(){ show("shop"); };
-$("goAbout").onclick = function(){ show("about"); };
-$("daily").onclick = function(){
-  if (s.daily === today()) { toast("Already claimed today. Come back tomorrow."); return; }
-  s.daily = today(); s.coins += 50; save(); menuStat(); toast("Daily bonus: +50 coins");
-};
+  /* App State */
+  var state = {
+    adsWatched: 0,
+    totalAds: 4,
+    generatedKey: ""
+  };
 
-/* ===== shop ===== */
-var UPS = [
-  {id:"arc",  n:"Wider shield",   d:"Bigger shield arc",           base:60,  g:1.8, max:8},
-  {id:"life", n:"Extra planet shield", d:"+1 starting life",       base:120, g:2.1, max:3},
-  {id:"slow", n:"Longer slow-time", d:"Icy comets slow time longer", base:80, g:1.7, max:6}
-];
-function ucost(u){ return Math.floor(u.base * Math.pow(u.g, s.up[u.id])); }
-function renderShop(){
-  var h = '<p style="margin-bottom:6px">Coins: <b>' + s.coins + '</b></p>';
-  UPS.forEach(function(u){
-    var lv = s.up[u.id], maxed = lv >= u.max, c = ucost(u);
-    h += '<div class="row"><div class="t"><b>' + u.n + ' (level ' + lv + '/' + u.max + ')</b><span>' + u.d + '</span></div>' +
-         '<button class="btn" data-buy="' + u.id + '"' + (maxed || s.coins < c ? " disabled" : "") + '>' + (maxed ? "Max" : c) + '</button></div>';
-  });
-  $("shoplist").innerHTML = h;
-}
-$("shoplist").addEventListener("click", function(e){
-  var b = e.target.closest("[data-buy]"); if (!b) return;
-  var u = UPS.filter(function(x){ return x.id === b.getAttribute("data-buy"); })[0], c = ucost(u);
-  if (s.up[u.id] >= u.max || s.coins < c) return;
-  s.coins -= c; s.up[u.id] += 1; save(); haptic("medium"); renderShop();
-});
+  function $(id) { return document.getElementById(id); }
 
-/* ===== canvas ===== */
-var cv = $("cv"), ctx = cv.getContext("2d"), w, h, M, cx, cy, dpr;
-function fit(){ dpr = Math.min(2, window.devicePixelRatio || 1); w = cv.clientWidth; h = cv.clientHeight; cv.width = w*dpr; cv.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); M = Math.min(w,h); cx = w/2; cy = h/2; }
-window.addEventListener("resize", fit); fit();
-var stars = []; for (var i=0;i<70;i++) stars.push({x:Math.random(),y:Math.random(),r:Math.random()*1.4+.3,p:Math.random()*6});
+  function haptic(type) {
+    try {
+      if (TG && TG.HapticFeedback) TG.HapticFeedback.impactOccurred(type);
+    } catch(e) {}
+  }
 
-var g = null, target = -Math.PI/2, running = false;
-function lives0(){ return 3 + s.up.life; }
-function start(){
-  g = {score:0,lives:lives0(),time:0,combo:0,comets:[],parts:[],ang:target,slowT:0,spawn:.6,revived:false,doubled:false,earned:0,golds:0,shake:0};
-  running = true; ["menu","shop","over","about"].forEach(function(n){ $(n).classList.remove("on"); }); hud();
-}
-function hud(){
-  $("sc").textContent = g ? g.score : 0;
-  var m = g ? 1 + Math.min(4, Math.floor(g.combo/5)) : 1; $("cmb").textContent = "Combo ×" + m;
-  var hs = ""; if (g) for (var i=0;i<g.lives;i++) hs += "♥"; $("hearts").textContent = hs;
-  $("slow").textContent = g && g.slowT > 0 ? "Slow time " + Math.ceil(g.slowT) + "s" : "";
-}
-function pos(e){ var r = cv.getBoundingClientRect(); target = Math.atan2(e.clientY - r.top - cy, e.clientX - r.left - cx); }
-cv.addEventListener("pointerdown", function(e){ e.preventDefault(); pos(e); });
-cv.addEventListener("pointermove", function(e){ pos(e); });
+  var toastTimer;
+  function showToast(msg) {
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.add("on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      t.classList.remove("on");
+    }, 2600);
+  }
 
-function burst(x, y, col, n){ for (var i=0;i<n;i++){ var a=Math.random()*6.283, v=40+Math.random()*120; g.parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:.5,c:col}); } }
-function adiff(a,b){ return Math.atan2(Math.sin(a-b), Math.cos(a-b)); }
+  function updateUI() {
+    var progress = (state.adsWatched / state.totalAds) * 100;
+    $("progressBar").style.width = progress + "%";
+    $("adCountText").textContent = state.adsWatched + " / " + state.totalAds + " Ads Watched";
 
-function spawn(){
-  var r = Math.random(), type = r < .08 ? "gold" : (r < .13 ? "ice" : "rock");
-  var sp = Math.min(.8*M, .17*M + g.time*.0042*M) * (.85 + Math.random()*.35);
-  g.comets.push({a:Math.random()*6.283, r:Math.hypot(w,h)/2 + 24, sp:sp, t:type});
-}
-function update(dt){
-  g.time += dt;
-  var cs = g.slowT > 0 ? .5 : 1; if (g.slowT > 0) g.slowT -= dt;
-  g.spawn -= dt;
-  if (g.spawn <= 0) { spawn(); g.spawn = Math.max(.32, 1.05 - g.time*.011) * (.8 + Math.random()*.5); }
-  var d = adiff(target, g.ang), mx = 9*dt; g.ang += Math.max(-mx, Math.min(mx, d));
-  var R0 = .07*M, Rs = .17*M, half = .35 + .07*s.up.arc;
-  for (var i=g.comets.length-1;i>=0;i--){
-    var c = g.comets[i]; c.r -= c.sp*cs*dt;
-    var x = cx + Math.cos(c.a)*c.r, y = cy + Math.sin(c.a)*c.r;
-    if (c.r <= Rs + 8 && c.r > R0) {
-      if (Math.abs(adiff(c.a, g.ang)) <= half) {
-        g.combo++; var m = 1 + Math.min(4, Math.floor(g.combo/5));
-        g.score += 10*m;
-        if (c.t === "gold") { g.golds++; g.score += 20; }
-        if (c.t === "ice") g.slowT = 4 + s.up.slow;
-        burst(x, y, c.t === "gold" ? "#ffd166" : (c.t === "ice" ? "#7fd8ff" : "#ff7a59"), 10);
-        haptic("light"); g.comets.splice(i,1); continue;
+    var btn = $("watchAdBtn");
+    if (state.adsWatched < state.totalAds) {
+      btn.style.display = "flex";
+      btn.disabled = false;
+      
+      // Update label indicating type of ad
+      var adTypeStr = (state.adsWatched < 2) ? "Interstitial" : "Rewarded";
+      btn.innerHTML = "<span>Watch Ad " + (state.adsWatched + 1) + "/" + state.totalAds + " (" + adTypeStr + ")</span>";
+    } else {
+      btn.style.display = "none";
+      $("keyBox").classList.add("on");
+    }
+  }
+
+  function generateRandomKey() {
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var part = function() {
+      var str = "";
+      for (var i = 0; i < 4; i++) {
+        str += chars.charAt(Math.floor(Math.random() * chars.length));
       }
+      return str;
+    };
+    return "KEY-" + part() + "-" + part() + "-" + part();
+  }
+
+  /* AdsGram Controller logic per Block ID */
+  function triggerAd(blockId, isReward, onSuccess) {
+    if (!window.Adsgram) {
+      showToast("Ads SDK not loaded. Please try again.");
+      return;
     }
-    if (c.r <= R0 + 6) {
-      g.lives--; g.combo = 0; g.shake = .3; burst(x, y, "#ff5a4d", 16); haptic("heavy"); g.comets.splice(i,1);
-      if (g.lives <= 0) { over(); return; }
+
+    try {
+      // Initialize controller dynamically per ad unit
+      var AdController = window.Adsgram.init({ blockId: blockId });
+      
+      AdController.show().then(function(result) {
+        if (result && (result.done || !isReward)) {
+          onSuccess();
+        } else {
+          showToast("Please watch the full ad to proceed.");
+        }
+      }).catch(function(err) {
+        showToast("No ad available right now. Please try again.");
+      });
+    } catch (e) {
+      showToast("Ad error occurred. Try again.");
     }
   }
-  for (var j=g.parts.length-1;j>=0;j--){ var q = g.parts[j]; q.x += q.vx*dt; q.y += q.vy*dt; q.l -= dt; if (q.l <= 0) g.parts.splice(j,1); }
-  if (g.shake > 0) g.shake -= dt;
-  hud();
-}
-function over(){
-  running = false;
-  g.earned = Math.floor(g.score/10) + g.golds*5;
-  s.coins += g.earned; s.games++; if (g.score > s.best) s.best = g.score; save();
-  $("oScore").textContent = g.score;
-  $("oInfo").textContent = "Best " + s.best + "  ·  +" + g.earned + " coins";
-  $("adRevive").disabled = false; $("adRevive").hidden = g.revived;
-  $("adDouble").disabled = g.earned <= 0; $("adDouble").hidden = g.doubled;
-  $("over").classList.add("on");
-}
 
-/* ===== drawing ===== */
-var last = 0;
-function draw(t){
-  var dt = Math.min(.05, (t - last)/1000 || 0); last = t;
-  if (running && g) update(dt);
-  ctx.save();
-  var gr = ctx.createRadialGradient(cx, cy, 10, cx, cy, Math.max(w,h)*.7);
-  gr.addColorStop(0, "#1c2250"); gr.addColorStop(1, "#0b0f22");
-  ctx.fillStyle = gr; ctx.fillRect(0,0,w,h);
-  stars.forEach(function(st){ ctx.globalAlpha = .45 + .4*Math.sin(t/900 + st.p); ctx.fillStyle = "#cfd8ff"; ctx.beginPath(); ctx.arc(st.x*w, st.y*h, st.r, 0, 6.283); ctx.fill(); });
-  ctx.globalAlpha = 1;
-  if (g && g.shake > 0) ctx.translate((Math.random()-.5)*8, (Math.random()-.5)*8);
-  var R0 = .07*M, Rs = .17*M;
-  var pg = ctx.createRadialGradient(cx - R0*.3, cy - R0*.3, 2, cx, cy, R0);
-  pg.addColorStop(0, "#7ee0c9"); pg.addColorStop(1, "#1f7d8c");
-  ctx.shadowColor = "#4fd1c5"; ctx.shadowBlur = 24; ctx.fillStyle = pg; ctx.beginPath(); ctx.arc(cx, cy, R0, 0, 6.283); ctx.fill(); ctx.shadowBlur = 0;
-  if (g) {
-    var half = .35 + .07*s.up.arc;
-    ctx.strokeStyle = "rgba(255,122,89,.18)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, Rs, 0, 6.283); ctx.stroke();
-    ctx.strokeStyle = "#ff7a59"; ctx.lineWidth = 9; ctx.lineCap = "round"; ctx.shadowColor = "#ff7a59"; ctx.shadowBlur = 14;
-    ctx.beginPath(); ctx.arc(cx, cy, Rs, g.ang - half, g.ang + half); ctx.stroke(); ctx.shadowBlur = 0;
-    g.comets.forEach(function(c){
-      var x = cx + Math.cos(c.a)*c.r, y = cy + Math.sin(c.a)*c.r, col = c.t === "gold" ? "#ffd166" : (c.t === "ice" ? "#7fd8ff" : "#d9dff7");
-      var tx = cx + Math.cos(c.a)*(c.r + 34), ty = cy + Math.sin(c.a)*(c.r + 34);
-      var lg = ctx.createLinearGradient(x, y, tx, ty); lg.addColorStop(0, col); lg.addColorStop(1, "rgba(255,255,255,0)");
-      ctx.strokeStyle = lg; ctx.lineWidth = 6; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(tx,ty); ctx.stroke();
-      ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, c.t === "rock" ? 7 : 8, 0, 6.283); ctx.fill();
+  /* Watch Button Handler */
+  $("watchAdBtn").onclick = function() {
+    var step = state.adsWatched + 1;
+    var targetBlockId = "";
+    var isReward = false;
+
+    // Route to appropriate Block ID
+    if (step === 1) {
+      targetBlockId = AD_BLOCKS.ad1;
+      isReward = false; // Interstitial
+    } else if (step === 2) {
+      targetBlockId = AD_BLOCKS.ad2;
+      isReward = false; // Interstitial
+    } else if (step === 3) {
+      targetBlockId = AD_BLOCKS.ad3;
+      isReward = true;  // Rewarded
+    } else if (step === 4) {
+      targetBlockId = AD_BLOCKS.ad4;
+      isReward = true;  // Rewarded
+    }
+
+    triggerAd(targetBlockId, isReward, function() {
+      haptic("medium");
+      state.adsWatched++;
+      
+      if (state.adsWatched === state.totalAds) {
+        state.generatedKey = generateRandomKey();
+        $("keyValue").textContent = state.generatedKey;
+        showToast("All ads completed! Key unlocked.");
+      } else {
+        showToast("Ad completed (" + state.adsWatched + "/" + state.totalAds + ")");
+      }
+      
+      updateUI();
     });
-    g.parts.forEach(function(q){ ctx.globalAlpha = Math.max(0, q.l*2); ctx.fillStyle = q.c; ctx.fillRect(q.x-2, q.y-2, 4, 4); });
-    ctx.globalAlpha = 1;
-  }
-  ctx.restore();
-  requestAnimationFrame(draw);
-}
-requestAnimationFrame(draw);
+  };
 
-/* ===== optional rewarded ads (AdsGram) ===== */
-var ad = null;
-try { if (window.Adsgram && ADSGRAM_BLOCK_ID.indexOf("YOUR_") !== 0) ad = window.Adsgram.init({ blockId: ADSGRAM_BLOCK_ID }); } catch(e){}
-function showAd(done){
-  if (Date.now() - s.adAt < AD_COOLDOWN_MS) { toast("Please wait a moment before the next ad."); return; }
-  if (!ad) { toast("Ads are not available right now."); return; }
-  ad.show().then(function(r){ if (r && r.done) { s.adAt = Date.now(); done(); save(); } else toast("Watch the full ad to get the bonus."); })
-    .catch(function(){ toast("No ad available right now. Try again soon."); });
-}
-$("adRevive").onclick = function(){
-  showAd(function(){
-    g.revived = true; g.lives = 1; g.comets = []; g.spawn = 1.2;
-    s.coins -= g.earned * (g.doubled ? 2 : 1); g.doubled = false; s.games = Math.max(0, s.games - 1); /* coins are paid again when this run ends */
-    running = true; $("over").classList.remove("on"); hud();
-  });
-};
-$("adDouble").onclick = function(){
-  showAd(function(){ if (g.doubled) return; g.doubled = true; s.coins += g.earned; $("oInfo").textContent = "Best " + s.best + "  ·  +" + (g.earned*2) + " coins"; $("adDouble").hidden = true; toast("Coins doubled"); });
-};
-$("play").onclick = start;
-$("again").onclick = start;
-document.addEventListener("visibilitychange", function(){ if (document.hidden) save(); });
-menuStat();
+  /* Copy Key Handler */
+  $("copyKeyBtn").onclick = function() {
+    if (!state.generatedKey) return;
+    navigator.clipboard.writeText(state.generatedKey).then(function() {
+      haptic("light");
+      showToast("Key copied to clipboard!");
+    }).catch(function() {
+      showToast("Failed to copy key.");
+    });
+  };
+
+  // Initial setup
+  updateUI();
+
 })();
 </script>
 </body>
